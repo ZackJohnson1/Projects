@@ -61,7 +61,6 @@ def main():
     workout = Workout()
     workout.start()
 
-
 if __name__ == "__main__":
     workout = Workout()
     workout.start()
