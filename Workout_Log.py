@@ -1,5 +1,15 @@
+import datetime
+
+unformated_date = datetime.date.today()
+today = unformated_date.strftime("%m/%d/%Y")
+
 class Workout:
     def __init__(self):
+        """This function initializes body_parts, key_words and workouk_log...body_parts defines a dictionary containing
+        the different body parts and their respective exercises...exercise keywords defines a dictionary containing
+        keyword-exercise pairs for all the exercises listed in the body_parts dictionary...workout_log is list that will store
+        tuples of the form (body_part, exercise, sets_reps_weight, volume) for each workout that gets logged"""
+
         self.body_parts = {
             "chest": ["Push-ups", "Bench press", "Incline Bench press", "Dumbbell flys", "Dips"],
             "back": ["Pull-ups", "Lat pulldown", "Bent over rows"],
@@ -36,6 +46,7 @@ class Workout:
         self.workout_log = []
 
     def choose_body_part(self):
+        """This function prompts the user to choose a body part from a list of available options"""
         print("Body parts: chest, back, shoulders, arms, legs, core")
         print()
         choice = input("Choose a body part to workout: ").lower()
@@ -85,12 +96,11 @@ class Workout:
                 break
 
         if self.workout_log:
-            print("Workout Log:")
+            print(f"Workout Log for {today}: ")
             total_volume = 0
             if self.workout_log:
                 for body_part, exercise, sets_reps_weight, volume in self.workout_log:
-                    print(
-                        f"{exercise} for {body_part} with sets: {sets_reps_weight['sets']}, reps: {sets_reps_weight['reps']}, weight: {sets_reps_weight['weight']}, volume: {volume}")
+                    print(f"{exercise} for {body_part} with sets: {sets_reps_weight['sets']}, reps: {sets_reps_weight['reps']}, weight: {sets_reps_weight['weight']}, volume: {volume}")
                     total_volume += volume
             print(f"Total Volume: {total_volume}")
 
