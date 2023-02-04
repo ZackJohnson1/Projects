@@ -12,7 +12,9 @@ class Workout:
 
     def choose_body_part(self):
         print("Body parts: chest, back, shoulders, arms, legs, core")
+        print()
         choice = input("Choose a body part to workout: ").lower()
+        print()
         if choice in self.body_parts:
             return choice
         else:
@@ -40,8 +42,7 @@ class Workout:
     def log_workout(self, body_part, exercise):
         sets_reps_weight = self.get_sets_reps_weight()
         self.workout_log.append((body_part, exercise, sets_reps_weight, self.get_volume(sets_reps_weight['sets'], sets_reps_weight['reps'], sets_reps_weight['weight'])))
-        print(
-            f"{exercise} for {body_part} with sets: {sets_reps_weight['sets']}, reps: {sets_reps_weight['reps']}, weight: {sets_reps_weight['weight']} has been added to your workout log.")
+        print(f"{exercise} for {body_part} with sets: {sets_reps_weight['sets']}, reps: {sets_reps_weight['reps']}, weight: {sets_reps_weight['weight']} has been added to your workout log.")
 
     def start(self):
         while True:
@@ -50,14 +51,11 @@ class Workout:
             self.log_workout(body_part, exercise)
             repeat = input("Would you like to add another exercise? (yes/no) ").lower()
             if repeat != "yes":
-                print("No exercises have been logged.")
-                print()
                 break
 
         if self.workout_log:
             print("Workout Log:")
             if self.workout_log:
-                print("Workout Log:")
                 for body_part, exercise, sets_reps_weight, volume in self.workout_log:
                     print(f"{exercise} for {body_part} with sets: {sets_reps_weight['sets']}, reps: {sets_reps_weight['reps']}, weight: {sets_reps_weight['weight']}, volume: {volume}")
 
