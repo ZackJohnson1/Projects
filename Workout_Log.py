@@ -39,6 +39,13 @@ class Workout:
     def get_volume(self, sets, reps, weight):
         return int(sets) * int(reps) * int(weight)
 
+
+    def get_total_volume(self):
+        total_volume = 0
+        for body_part, exercise, sets_reps_weight, volume in self.workout_log:
+            total_volume += volume
+        return total_volume
+
     def log_workout(self, body_part, exercise):
         sets_reps_weight = self.get_sets_reps_weight()
         self.workout_log.append((body_part, exercise, sets_reps_weight, self.get_volume(sets_reps_weight['sets'], sets_reps_weight['reps'], sets_reps_weight['weight'])))
@@ -55,9 +62,13 @@ class Workout:
 
         if self.workout_log:
             print("Workout Log:")
+            total_volume = 0
             if self.workout_log:
                 for body_part, exercise, sets_reps_weight, volume in self.workout_log:
-                    print(f"{exercise} for {body_part} with sets: {sets_reps_weight['sets']}, reps: {sets_reps_weight['reps']}, weight: {sets_reps_weight['weight']}, volume: {volume}")
+                    print(
+                        f"{exercise} for {body_part} with sets: {sets_reps_weight['sets']}, reps: {sets_reps_weight['reps']}, weight: {sets_reps_weight['weight']}, volume: {volume}")
+                    total_volume += volume
+            print(f"Total Volume: {total_volume}")
 
 def main():
     workout = Workout()
