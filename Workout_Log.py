@@ -34,9 +34,12 @@ class Workout:
         weight = input("Enter the weight used: ")
         return {"sets": sets, "reps": reps, "weight": weight}
 
+    def get_volume(self, sets, reps, weight):
+        return int(sets) * int(reps) * int(weight)
+
     def log_workout(self, body_part, exercise):
         sets_reps_weight = self.get_sets_reps_weight()
-        self.workout_log.append((body_part, exercise, sets_reps_weight))
+        self.workout_log.append((body_part, exercise, sets_reps_weight, self.get_volume(sets_reps_weight['sets'], sets_reps_weight['reps'], sets_reps_weight['weight'])))
         print(
             f"{exercise} for {body_part} with sets: {sets_reps_weight['sets']}, reps: {sets_reps_weight['reps']}, weight: {sets_reps_weight['weight']} has been added to your workout log.")
 
@@ -53,9 +56,10 @@ class Workout:
 
         if self.workout_log:
             print("Workout Log:")
-            for body_part, exercise, sets_reps_weight in self.workout_log:
-                print(f"{exercise} for {body_part} with sets: {sets_reps_weight['sets']}, reps: {sets_reps_weight['reps']}, weight: {sets_reps_weight['weight']}")
-
+            if self.workout_log:
+                print("Workout Log:")
+                for body_part, exercise, sets_reps_weight, volume in self.workout_log:
+                    print(f"{exercise} for {body_part} with sets: {sets_reps_weight['sets']}, reps: {sets_reps_weight['reps']}, weight: {sets_reps_weight['weight']}, volume: {volume}")
 
 def main():
     workout = Workout()
