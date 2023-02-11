@@ -91,8 +91,8 @@ class Workout:
             body_part = self.choose_body_part()
             exercise = self.choose_exercise(body_part)
             self.log_workout(body_part, exercise)
-            repeat = input("Would you like to add another exercise? (yes/no) ").lower()
-            if repeat != "yes":
+            repeat = input("Would you like to add another exercise? (Y/N) ").lower()
+            if repeat != "y":
                 break
 
         if self.workout_log:
