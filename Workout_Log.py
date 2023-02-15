@@ -67,11 +67,15 @@ class Workout:
             return self.choose_exercise(body_part)
 
     def get_sets_reps_weight(self):
-        sets = input("Enter the number of sets: ")
-        reps = input("Enter the number of reps: ")
-        weight = input("Enter the weight used: ")
-        return {"sets": sets, "reps": reps, "weight": weight}
-
+        try:
+            sets = int(input("Enter the number of sets: "))
+            reps = int(input("Enter the number of reps: "))
+            weight = int(input("Enter the weight used: "))
+            return {"sets": sets, "reps": reps, "weight": weight}
+        except ValueError:
+            print("ERROR: Integers only!")
+            return self.get_sets_reps_weight()
+b
     def get_volume(self, sets, reps, weight):
         return int(sets) * int(reps) * int(weight)
 
